@@ -880,7 +880,14 @@ nav{
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
+// ── SUPABASE ────────────────────────────
+const _sb = supabase.createClient(
+  'https://ddpdqljrxikujqabnatn.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRkcGRxbGpyeGlrdWpxYWJuYXRuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM1OTk3NTQsImV4cCI6MjA4OTE3NTc1NH0.ArB_Mx8IfckCEIqhQjnW4zZXz4uw5p0wT1gD4hll2U8'
+);
+
 // ── STATE ──────────────────────────────
 const state = {
   edad: null,
@@ -1278,6 +1285,27 @@ function buildResult() {
         </div>
       </div>
     </div>`).join('');
+
+  // ── GUARDAR EN SUPABASE ─────────────────
+  _sb.from('respuestas').insert({
+    nombre: state.nombre,
+    correo: state.correo,
+    telefono: state.telefono,
+    edad: state.edad,
+    menstruacion: state.menstruacion,
+    peso: state.peso,
+    score: pctScore,
+    nivel: nivel,
+    perfil_dominante: dominant,
+    sintomas_fisicos: [...state.sintomasFisicos],
+    sueno: [...state.sueno],
+    bienestar_intimo: [...state.bienestarIntimo],
+    intensidades: state.intensidades,
+    emo_intensidades: state.emoIntensidades,
+    ejes: axes,
+  }).then(({ error }) => {
+    if (error) console.error('Error guardando respuesta:', error);
+  });
 
   goTo(7);
 }
