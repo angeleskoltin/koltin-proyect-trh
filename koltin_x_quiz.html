@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evaluación Hormonal — Koltin X</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#fafaf8;
+  --warm:#f5f2ec;
+  --warm2:#ede9e0;
+  --border:#e0ddd6;
+  --gold:#9e7e5e;
+  --gold-light:#c9a882;
+  --teal:#2d6b63;
+  --teal-light:#3d8b80;
+  --dark:#1a1a1a;
+  --muted:#888;
+  --text:#555;
+  --red:#c0392b;
+}
+html,body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--cream);
+  color:var(--dark);
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* NAV */
+nav{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:.9rem 1.25rem;
+  border-bottom:.5px solid var(--border);
+  background:var(--cream);
+  position:sticky;top:0;z-index:100;
+}
+.logo{font-family:'DM Serif Display',serif;font-size:17px;letter-spacing:.02em}
+.logo span{color:var(--gold)}
+.nav-right{display:flex;align-items:center;gap:.75rem}
+.nav-step-pill{
+  font-size:10px;letter-spacing:.08em;
+  color:var(--muted);
+  background:var(--warm);
+  border:.5px solid var(--border);
+  padding:4px 10px;border-radius:20px;
+}
+
+/* PROGRESS */
+.progress-bar-wrap{
+  height:2px;background:var(--border);
+  position:sticky;top:49px;z-index:99;
+}
+.progress-bar-fill{
+  height:100%;background:var(--teal);
+  transition:width .5s cubic-bezier(.4,0,.2,1);
+}
+
+/* SCREENS */
+.screen{display:none;animation:fadeUp .35s ease both}
+.screen.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── INTRO ── */
+.intro{
+  padding:2.5rem 1.25rem 5rem;
+  max-width:520px;margin:0 auto;
+}
+.intro-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--gold);border:.5px solid var(--gold-light);
+  padding:5px 12px;border-radius:20px;margin-bottom:1.5rem;
+}
+.pulse{width:5px;height:5px;background:var(--gold);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.2}}
+.intro h1{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(2.2rem,9vw,3.2rem);
+  font-weight:400;line-height:1.08;
+  margin-bottom:1.25rem;
+}
+.intro h1 em{font-style:italic;color:var(--gold)}
+.intro-lead{
+  font-size:15px;color:var(--text);line-height:1.8;
+  margin-bottom:2rem;
+}
+.intro-cards{display:flex;flex-direction:column;gap:.5rem;margin-bottom:2.5rem}
+.intro-card{
+  display:flex;align-items:center;gap:.85rem;
+  padding:.85rem 1rem;
+  background:var(--warm);
+  border:.5px solid var(--border);border-radius:10px;
+}
+.intro-card-icon{font-size:18px;width:36px;text-align:center;flex-shrink:0}
+.intro-card p{font-size:13px;color:var(--text);line-height:1.5}
+.intro-card p strong{color:var(--dark);font-weight:500}
+
+/* ── SECTION SCREENS ── */
+.section-wrap{
+  max-width:560px;margin:0 auto;
+  padding:2rem 1.25rem 6rem;
+}
+.section-header{margin-bottom:2rem}
+.section-back{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:12px;color:var(--muted);
+  background:none;border:none;cursor:pointer;
+  padding:0;margin-bottom:1.25rem;font-family:'DM Sans',sans-serif;
+}
+.section-back:hover{color:var(--dark)}
+.section-eyebrow{
+  font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--teal);margin-bottom:.6rem;display:block;
+}
+.section-title{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(1.7rem,7vw,2.3rem);
+  font-weight:400;line-height:1.1;margin-bottom:.5rem;
+}
+.section-title em{font-style:italic;color:var(--gold)}
+.section-subtitle{font-size:13px;color:var(--muted);line-height:1.6}
+
+/* QUESTION BLOCKS */
+.q-block{margin-bottom:2.25rem}
+.q-label{
+  font-size:13px;font-weight:500;color:var(--dark);
+  margin-bottom:.75rem;display:block;line-height:1.4;
+}
+.q-hint{font-size:11px;color:var(--muted);margin-top:.2rem;display:block}
+
+/* RADIO / CHECKBOX OPTIONS */
+.opt-list{display:flex;flex-direction:column;gap:.45rem}
+.opt-item{
+  display:flex;align-items:flex-start;gap:.8rem;
+  padding:.85rem 1rem;
+  border:.5px solid var(--border);border-radius:10px;
+  cursor:pointer;transition:all .18s;
+  background:var(--cream);
+  position:relative;
+}
+.opt-item:hover{background:var(--warm);border-color:var(--gold-light)}
+.opt-item.selected{border-color:var(--teal);background:#f0f7f6}
+.opt-item input{position:absolute;opacity:0;pointer-events:none}
+.opt-marker{
+  width:18px;height:18px;border-radius:50%;
+  border:.5px solid var(--border);
+  flex-shrink:0;margin-top:1px;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .18s;
+}
+.opt-item.checkbox .opt-marker{border-radius:5px}
+.opt-item.selected .opt-marker{
+  background:var(--teal);border-color:var(--teal);
+}
+.opt-item.selected .opt-marker::after{
+  content:'';display:block;
+  width:6px;height:6px;border-radius:50%;background:#fff;
+}
+.opt-item.checkbox.selected .opt-marker::after{
+  width:5px;height:5px;border-radius:1px;
+}
+.opt-text{}
+.opt-main{font-size:13px;color:var(--dark);line-height:1.4}
+.opt-sub{font-size:11px;color:var(--muted);margin-top:2px;line-height:1.4}
+.opt-reveal{
+  display:none;
+  margin-top:.6rem;padding:.6rem .85rem;
+  background:#fff8f0;border:.5px solid var(--gold-light);
+  border-radius:7px;font-size:11px;color:var(--gold);line-height:1.6;
+}
+.opt-item.selected .opt-reveal{display:block}
+
+/* AGE INPUT */
+.age-input-wrap{
+  display:flex;align-items:center;gap:.75rem;margin-top:.5rem;
+}
+.age-input{
+  width:90px;padding:.75rem 1rem;
+  border:.5px solid var(--border);border-radius:10px;
+  font-family:'DM Sans',sans-serif;font-size:18px;font-weight:300;
+  color:var(--dark);background:var(--cream);
+  text-align:center;
+  transition:border-color .2s;
+  -moz-appearance:textfield;
+}
+.age-input:focus{outline:none;border-color:var(--teal)}
+.age-input::-webkit-inner-spin-button{-webkit-appearance:none}
+.age-label-unit{font-size:13px;color:var(--muted)}
+
+/* INTENSITY SCALE */
+.intensity-block{
+  border:.5px solid var(--border);border-radius:10px;
+  overflow:hidden;margin-bottom:.5rem;
+  background:var(--cream);
+}
+.intensity-header{
+  padding:.85rem 1rem;
+  display:flex;justify-content:space-between;align-items:center;
+  cursor:pointer;
+}
+.intensity-name{font-size:13px;font-weight:500;color:var(--dark)}
+.intensity-info{font-size:10px;color:var(--teal);letter-spacing:.04em;cursor:pointer}
+.intensity-scale{
+  display:flex;gap:.35rem;
+  padding:0 1rem .85rem;
+}
+.intensity-btn{
+  flex:1;padding:.5rem 0;
+  border:.5px solid var(--border);border-radius:8px;
+  background:var(--cream);cursor:pointer;
+  font-family:'DM Sans',sans-serif;
+  font-size:13px;font-weight:400;color:var(--muted);
+  transition:all .15s;text-align:center;
+}
+.intensity-btn:hover{border-color:var(--teal-light);color:var(--teal)}
+.intensity-btn.active{
+  background:var(--teal);border-color:var(--teal);
+  color:#fff;font-weight:500;
+}
+.intensity-scale-labels{
+  display:flex;justify-content:space-between;
+  padding:0 1rem .6rem;font-size:10px;color:var(--muted);
+}
+.intensity-tooltip{
+  display:none;padding:.5rem 1rem .85rem;
+  font-size:11px;color:var(--teal);
+  background:#f0f7f6;border-top:.5px solid var(--border);
+  line-height:1.6;
+}
+.intensity-block.info-open .intensity-tooltip{display:block}
+
+/* CONTACT FORM */
+.contact-block{
+  display:flex;flex-direction:column;gap:1rem;margin-bottom:2rem;
+}
+.field-label{font-size:12px;font-weight:500;color:var(--dark);margin-bottom:.35rem;display:block;letter-spacing:.02em}
+.field-input{
+  width:100%;padding:.85rem 1rem;
+  border:.5px solid var(--border);border-radius:10px;
+  font-family:'DM Sans',sans-serif;font-size:14px;color:var(--dark);
+  background:var(--cream);transition:border-color .2s;
+}
+.field-input:focus{outline:none;border-color:var(--teal)}
+.field-input::placeholder{color:#bbb}
+
+/* NAV BUTTONS */
+.nav-btns{
+  position:fixed;bottom:0;left:0;right:0;
+  padding:1rem 1.25rem calc(1rem + env(safe-area-inset-bottom));
+  background:var(--cream);
+  border-top:.5px solid var(--border);
+  display:flex;gap:.6rem;
+}
+.btn-primary{
+  flex:1;padding:15px 20px;
+  background:var(--teal);color:#fff;
+  border:none;border-radius:10px;
+  font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;
+  cursor:pointer;transition:background .15s;
+  letter-spacing:.02em;
+}
+.btn-primary:hover{background:var(--teal-light)}
+.btn-primary:disabled{background:#ccc;cursor:default}
+.btn-secondary{
+  padding:15px 16px;
+  background:var(--warm);color:var(--dark);
+  border:.5px solid var(--border);border-radius:10px;
+  font-family:'DM Sans',sans-serif;font-size:14px;
+  cursor:pointer;transition:all .15s;
+}
+.btn-secondary:hover{background:var(--warm2)}
+
+/* ── RESULT ── */
+.result-wrap{
+  max-width:560px;margin:0 auto;
+  padding:2rem 1.25rem 6rem;
+}
+.result-hero{
+  text-align:center;padding:2rem 0 2rem;
+  border-bottom:.5px solid var(--border);margin-bottom:2rem;
+}
+.result-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--teal);border:.5px solid var(--teal-light);
+  padding:5px 14px;border-radius:20px;margin-bottom:1rem;
+  background:#f0f7f6;
+}
+.result-name{
+  font-size:13px;color:var(--muted);margin-bottom:.3rem;
+}
+.result-title{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(1.8rem,8vw,2.6rem);
+  font-weight:400;line-height:1.1;margin-bottom:.75rem;
+}
+.result-title em{font-style:italic;color:var(--gold)}
+.score-pill{
+  display:inline-flex;align-items:center;gap:.4rem;
+  background:var(--warm);border:.5px solid var(--border);
+  padding:.45rem .9rem;border-radius:20px;
+  font-size:12px;color:var(--text);
+}
+.score-dot{width:7px;height:7px;border-radius:50%;background:var(--teal)}
+
+/* PERFIL DE EJES */
+.profile-axes-card{
+  background:var(--dark);color:#fff;
+  border-radius:14px;padding:1.5rem;
+  margin-bottom:1.5rem;
+}
+.pac-tag{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-light);margin-bottom:.75rem;display:block}
+.pac-title{font-family:'DM Serif Display',serif;font-size:1.35rem;font-weight:400;line-height:1.2;margin-bottom:.4rem}
+.pac-title em{font-style:italic;color:var(--gold-light)}
+.pac-desc{font-size:12px;color:#999;line-height:1.65;margin-bottom:1.5rem}
+.axes-list{display:flex;flex-direction:column;gap:.9rem}
+.axis-row{display:flex;flex-direction:column;gap:.3rem}
+.axis-meta{display:flex;justify-content:space-between;align-items:baseline}
+.axis-name{font-size:12px;color:#ccc}
+.axis-pct{font-size:11px;color:var(--gold-light);font-weight:500}
+.axis-track{height:3px;background:#2a2a2a;border-radius:2px;overflow:hidden}
+.axis-fill{height:100%;border-radius:2px;background:var(--gold);width:0;transition:width 1s cubic-bezier(.4,0,.2,1)}
+
+/* BIOMARCADORES */
+.bio-section{margin-bottom:2rem}
+.bio-section-title{
+  font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--teal);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem;
+}
+.bio-section-title::after{content:'';flex:1;height:.5px;background:var(--border)}
+
+.bio-card{
+  border:.5px solid var(--border);border-radius:12px;
+  overflow:hidden;margin-bottom:.6rem;
+  background:var(--cream);
+}
+.bio-card-header{
+  display:grid;grid-template-columns:auto 1fr;gap:1rem;
+  padding:1rem;align-items:start;
+}
+.bio-label-col{}
+.bio-priority{
+  font-size:9px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--teal);background:#f0f7f6;
+  border:.5px solid var(--teal-light);
+  padding:2px 8px;border-radius:20px;
+  display:inline-block;margin-bottom:.35rem;
+  white-space:nowrap;
+}
+.bio-name{font-size:13px;font-weight:600;color:var(--dark);margin-bottom:.2rem}
+.bio-state{font-size:11px;color:var(--muted)}
+.bio-right{}
+.bio-tags{display:flex;flex-wrap:wrap;gap:.3rem;margin-bottom:.5rem}
+.bio-tag{
+  font-size:10px;background:var(--warm2);
+  color:var(--dark);padding:3px 9px;border-radius:20px;
+}
+.bio-nota-label{
+  font-size:9px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:.2rem;display:block;
+}
+.bio-nota{font-size:12px;color:var(--text);line-height:1.65;margin-bottom:.3rem}
+.bio-prevalence{font-size:11px;color:var(--muted);font-style:italic}
+
+/* PLAN DE ACCIÓN */
+.plan-card{
+  background:var(--warm);
+  border:.5px solid var(--border);border-radius:14px;
+  padding:1.5rem;margin-bottom:1.25rem;
+}
+.plan-title{
+  font-family:'DM Serif Display',serif;
+  font-size:1.4rem;font-weight:400;margin-bottom:1rem;
+}
+.plan-title em{font-style:italic;color:var(--gold)}
+.plan-steps{display:flex;flex-direction:column;gap:.75rem}
+.plan-step{
+  display:flex;align-items:flex-start;gap:.75rem;
+  padding:.75rem;background:var(--cream);
+  border:.5px solid var(--border);border-radius:9px;
+}
+.plan-num{
+  font-family:'DM Serif Display',serif;
+  font-size:1.2rem;color:var(--border);
+  flex-shrink:0;width:22px;line-height:1;margin-top:1px;
+}
+.plan-step-body{}
+.plan-step-title{font-size:13px;font-weight:500;color:var(--dark);margin-bottom:1px}
+.plan-step-desc{font-size:12px;color:var(--muted);line-height:1.5}
+
+/* FINAL CTA */
+.final-cta-block{
+  background:var(--dark);color:#fff;
+  border-radius:14px;padding:1.75rem;
+  text-align:center;margin-bottom:1.25rem;
+}
+.final-cta-name{
+  font-size:13px;color:rgba(255,255,255,.5);margin-bottom:.5rem;
+}
+.final-cta-title{
+  font-family:'DM Serif Display',serif;
+  font-size:1.5rem;font-weight:400;line-height:1.2;
+  margin-bottom:.75rem;
+}
+.final-cta-title em{font-style:italic;color:var(--gold-light)}
+.final-cta-desc{font-size:13px;color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:1.5rem}
+.btn-whatsapp{
+  display:flex;align-items:center;justify-content:center;gap:.6rem;
+  background:#25D366;color:#fff;
+  border:none;border-radius:10px;padding:15px 20px;
+  font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;
+  cursor:pointer;text-decoration:none;width:100%;
+  letter-spacing:.02em;transition:background .15s;
+}
+.btn-whatsapp:hover{background:#1ebe5a}
+.btn-wa-sub{font-size:11px;color:rgba(255,255,255,.4);margin-top:.6rem}
+
+.disclaimer{
+  font-size:11px;color:#bbb;line-height:1.6;text-align:center;
+  padding:1.25rem 0;border-top:.5px solid var(--border);
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Koltin<span>X</span></div>
+  <div class="nav-right">
+    <div class="nav-step-pill" id="nav-pill">Evaluación gratuita</div>
+  </div>
+</nav>
+<div class="progress-bar-wrap">
+  <div class="progress-bar-fill" id="pbar" style="width:0%"></div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PANTALLA 0: INTRO
+══════════════════════════════════════ -->
+<div class="screen active" id="s0">
+  <div class="intro">
+    <div class="intro-badge"><span class="pulse"></span>Evaluación hormonal gratuita</div>
+    <h1>Entiende qué está<br>pasando en tu<br><em>cuerpo.</em></h1>
+    <p class="intro-lead">Muchos síntomas que se atribuyen al estrés o "la edad" tienen un origen hormonal claro — y solución. Esta evaluación te da un mapa orientativo en menos de 5 minutos.</p>
+    <div class="intro-cards">
+      <div class="intro-card">
+        <div class="intro-card-icon">🩺</div>
+        <p><strong>Diseñada para mujeres de 40+</strong><br>Perimenopausia, menopausia y postmenopausia</p>
+      </div>
+      <div class="intro-card">
+        <div class="intro-card-icon">🔬</div>
+        <p><strong>Resultado inmediato</strong><br>Con biomarcadores específicos para tu perfil</p>
+      </div>
+      <div class="intro-card">
+        <div class="intro-card-icon">✦</div>
+        <p><strong>Completamente gratuita</strong><br>Sin registro previo · Confidencial</p>
+      </div>
+    </div>
+    <button class="btn-primary" style="width:100%" onclick="goTo(1)">Comenzar evaluación →</button>
+    <p style="font-size:11px;color:var(--muted);text-align:center;margin-top:.6rem">Aproximadamente 5 minutos</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PANTALLA 1: DATOS BÁSICOS
+══════════════════════════════════════ -->
+<div class="screen" id="s1">
+  <div class="section-wrap">
+    <div class="section-header">
+      <button class="section-back" onclick="goTo(0)">← Anterior</button>
+      <span class="section-eyebrow">Datos básicos</span>
+      <div class="section-title">Cuéntanos <em>sobre ti</em></div>
+      <p class="section-subtitle">Empecemos con lo esencial para personalizar tu evaluación.</p>
+    </div>
+
+    <div class="q-block">
+      <label class="q-label">¿Cuántos años tienes?</label>
+      <div class="age-input-wrap">
+        <input type="number" class="age-input" id="edad" min="30" max="90" placeholder="—" oninput="checkS1()">
+        <span class="age-label-unit">años</span>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <label class="q-label">¿Cuándo fue tu última menstruación?</label>
+      <div class="opt-list" id="menstruacion-list">
+        <div class="opt-item" onclick="selectRadio('menstruacion','activa',this)">
+          <span class="opt-marker"></span>
+          <div class="opt-text">
+            <div class="opt-main">Aún tengo menstruación</div>
+            <div class="opt-sub">Regular o irregular</div>
+          </div>
+        </div>
+        <div class="opt-item" onclick="selectRadio('menstruacion','menos5',this)">
+          <span class="opt-marker"></span>
+          <div class="opt-text">
+            <div class="opt-main">Hace menos de 5 años</div>
+            <div class="opt-sub">Menopausia reciente</div>
+            <div class="opt-reveal">El cuerpo aún está en transición hormonal activa.</div>
+          </div>
+        </div>
+        <div class="opt-item" onclick="selectRadio('menstruacion','mas5',this)">
+          <span class="opt-marker"></span>
+          <div class="opt-text">
+            <div class="opt-main">Hace más de 5 años</div>
+            <div class="opt-sub">Postmenopausia establecida</div>
+            <div class="opt-reveal">Los niveles hormonales están en su punto más bajo. Los síntomas son frecuentes y tratables.</div>
+          </div>
+        </div>
+        <div class="opt-item" onclick="selectRadio('menstruacion','quirurgica',this)">
+          <span class="opt-marker"></span>
+          <div class="opt-text">
+            <div class="opt-main">Menopausia quirúrgica</div>
+            <div class="opt-sub">Por histerectomía u ooforectomía</div>
+            <div class="opt-reveal">La caída hormonal es abrupta y los síntomas suelen ser más intensos. El seguimiento es especialmente importante.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="nav-btns">
+    <button class="btn-secondary" onclick="goTo(0)">←</button>
+    <button class="btn-primary" id="btn-s1" disabled onclick="goTo(2)">Continuar →</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PANTALLA 2: SÍNTOMAS FÍSICOS
+══════════════════════════════════════ -->
+<div class="screen" id="s2">
+  <div class="section-wrap">
+    <div class="section-header">
+      <button class="section-back" onclick="goTo(1)">← Anterior</button>
+      <span class="section-eyebrow">Síntomas físicos</span>
+      <div class="section-title">¿Qué experimenta<br>tu <em>cuerpo</em>?</div>
+      <p class="section-subtitle">Selecciona todos los que experimentes actualmente.</p>
+    </div>
+
+    <div class="q-block">
+      <div class="opt-list">
+        <div class="opt-item checkbox" onclick="toggleCheck('sf_bochornos',this)">
+          <span class="opt-marker"></span>
+          <div class="opt-text">
+            <div class="opt-main">Bochornos o calores súbitos</div>
+            <div class="opt-sub">La caída de estrógeno desregula el termostato del hipotálamo</div>
+          </div>
+        </div>
+        <div class="opt-item checkbox" onclick="toggleCheck('sf_sudores',this)">
+          <span class="opt-marker"></span>
+          <div class="opt-text">
+            <div class="opt-main">Sudores nocturnos</div>
+            <div class="opt-sub">Bochornos durante el sueño por fluctuaciones hormonales nocturnas</div>
+          </div>
+        </div>
+        <div class="opt-item checkbox" onclick="toggleCheck('sf_palpitaciones',this)">
+          <span class="opt-marker"></span>
+          <div class="opt-text">
+            <div class="opt-main">Palpitaciones o taquicardia</div>
+            <div class="opt-sub">El estrógeno afecta el sistema cardiovascular y nervioso autónomo</div>
+          </div>
+        </div>
+        <div class="opt-item checkbox" onclick="toggleCheck('sf_articular',this)">
+          <span class="opt-marker"></span>
+          <div class="opt-text">
+            <div class="opt-main">Dolor articular o rigidez</div>
+            <div class="opt-sub">El estrógeno tiene efecto antiinflamatorio; al bajar, aumenta la inflamación</div>
+          </div>
+        </div>
+        <div class="opt-item checkbox" onclick="toggleCheck('sf_hinchazón',this)">
+          <span class="opt-marker"></span>
+          <div class="opt-text">
+            <div class="opt-main">Hinchazón o aumento de peso abdominal</div>
+            <div class="opt-sub">Cambios en metabolismo y redistribución de grasa por menor estrógeno y progesterona</div>
+          </div>
+        </div>
+        <div class="opt-item checkbox" onclick="toggleCheck('sf_senos',this)">
+          <span class="opt-marker"></span>
+          <div class="opt-text">
+            <div class="opt-main">Sensibilidad en los senos</div>
+            <div class="opt-sub">Fluctuaciones hormonales irregulares durante la perimenopausia</div>
+          </div>
+        </div>
+        <div class="opt-item checkbox" onclick="toggleCheck('sf_piel',this)">
+          <span class="opt-marker"></span>
+          <div class="opt-text">
+            <div class="opt-main">Cambios en piel o cabello</div>
+            <div class="opt-sub">El estrógeno mantiene colágeno y grosor del cabello; al bajar, la piel se adelgaza</div>
+          </div>
+        </div>
+        <div class="opt-item checkbox" onclick="toggleCheck('sf_cefalea',this)">
+          <span class="opt-marker"></span>
+          <div class="opt-text">
+            <div class="opt-main">Dolores de cabeza frecuentes</div>
+            <div class="opt-sub">Fluctuaciones de estrógeno afectan neurotransmisores y vasos sanguíneos</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <label class="q-label">Tu peso</label>
+      <div class="opt-list" id="peso-list">
+        <div class="opt-item" onclick="selectRadio('peso','estable',this)">
+          <span class="opt-marker"></span>
+          <div class="opt-text"><div class="opt-main">No noto cambios en mi peso</div></div>
+        </div>
+        <div class="opt-item" onclick="selectRadio('peso','dificil',this)">
+          <span class="opt-marker"></span>
+          <div class="opt-text">
+            <div class="opt-main">Me cuesta mucho trabajo bajar de peso</div>
+            <div class="opt-reveal"><strong>Hormona relacionada:</strong> La resistencia a la insulina y niveles bajos de estrógeno afectan el metabolismo, dificultando la pérdida de peso.</div>
+          </div>
+        </div>
+        <div class="opt-item" onclick="selectRadio('peso','subido',this)">
+          <span class="opt-marker"></span>
+          <div class="opt-text">
+            <div class="opt-main">He subido de peso sin cambiar mis hábitos</div>
+            <div class="opt-reveal"><strong>Hormona relacionada:</strong> Cortisol elevado, insulina desregulada y menor estrógeno favorecen la acumulación de grasa visceral.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <label class="q-label">Salud urinaria</label>
+      <div class="opt-list">
+        <div class="opt-item checkbox" onclick="toggleCheck('sf_urinaria',this)">
+          <span class="opt-marker"></span>
+          <div class="opt-text">
+            <div class="opt-main">Infecciones urinarias recurrentes o irritación</div>
+            <div class="opt-sub">El déficit de estrógeno adelgaza el epitelio uretral y reduce el pH protector</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="nav-btns">
+    <button class="btn-secondary" onclick="goTo(1)">←</button>
+    <button class="btn-primary" onclick="goTo(3)">Continuar →</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PANTALLA 3: INTENSIDAD
+══════════════════════════════════════ -->
+<div class="screen" id="s3">
+  <div class="section-wrap">
+    <div class="section-header">
+      <button class="section-back" onclick="goTo(2)">← Anterior</button>
+      <span class="section-eyebrow">Intensidad</span>
+      <div class="section-title">¿Qué tan intensos<br><em>son</em>?</div>
+      <p class="section-subtitle">Califica de 0 (nada) a 4 (muy intenso)</p>
+    </div>
+
+    <div id="intensity-blocks">
+      <!-- generados por JS -->
+    </div>
+  </div>
+  <div class="nav-btns">
+    <button class="btn-secondary" onclick="goTo(2)">←</button>
+    <button class="btn-primary" onclick="goTo(4)">Continuar →</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PANTALLA 4: SUEÑO Y EMOCIONAL
+══════════════════════════════════════ -->
+<div class="screen" id="s4">
+  <div class="section-wrap">
+    <div class="section-header">
+      <button class="section-back" onclick="goTo(3)">← Anterior</button>
+      <span class="section-eyebrow">Sueño y estado emocional</span>
+      <div class="section-title">Tu sueño y tu<br><em>ánimo</em></div>
+      <p class="section-subtitle">Los cambios hormonales afectan directamente el sistema nervioso.</p>
+    </div>
+
+    <div class="q-block">
+      <label class="q-label">Tu sueño <span class="q-hint">El sueño es clave para tu bienestar</span></label>
+      <div class="opt-list">
+        <div class="opt-item checkbox" onclick="toggleCheck('sueño_bien',this)">
+          <span class="opt-marker"></span>
+          <div class="opt-text"><div class="opt-main">Duermo bien, sin problemas</div></div>
+        </div>
+        <div class="opt-item checkbox" onclick="toggleCheck('sueño_conciliar',this)">
+          <span class="opt-marker"></span>
+          <div class="opt-text">
+            <div class="opt-main">Me cuesta trabajo quedarme dormida</div>
+            <div class="opt-sub">Dificultad para conciliar el sueño</div>
+          </div>
+        </div>
+        <div class="opt-item checkbox" onclick="toggleCheck('sueño_despierta',this)">
+          <span class="opt-marker"></span>
+          <div class="opt-text">
+            <div class="opt-main">Me despierto varias veces en la noche</div>
+            <div class="opt-sub">Especialmente entre 2-4 AM</div>
+          </div>
+        </div>
+        <div class="opt-item checkbox" onclick="toggleCheck('sueño_cansada',this)">
+          <span class="opt-marker"></span>
+          <div class="opt-text">
+            <div class="opt-main">Amanezco cansada aunque haya dormido</div>
+            <div class="opt-sub">Sueño no reparador</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <label class="q-label">Tu estado emocional <span class="q-hint">Los cambios hormonales afectan tu ánimo</span></label>
+      <div id="emo-intensity-blocks"></div>
+    </div>
+  </div>
+  <div class="nav-btns">
+    <button class="btn-secondary" onclick="goTo(3)">←</button>
+    <button class="btn-primary" onclick="goTo(5)">Continuar →</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PANTALLA 5: BIENESTAR ÍNTIMO
+══════════════════════════════════════ -->
+<div class="screen" id="s5">
+  <div class="section-wrap">
+    <div class="section-header">
+      <button class="section-back" onclick="goTo(4)">← Anterior</button>
+      <span class="section-eyebrow">Bienestar íntimo</span>
+      <div class="section-title">Estos cambios son<br>normales y tienen<br><em>solución</em></div>
+      <p class="section-subtitle">Selecciona todo lo que aplique. Esta información es completamente confidencial.</p>
+    </div>
+
+    <div class="q-block">
+      <div class="opt-list">
+        <div class="opt-item checkbox" onclick="toggleCheck('bi_deseo',this)">
+          <span class="opt-marker"></span>
+          <div class="opt-text">
+            <div class="opt-main">Menor deseo sexual</div>
+            <div class="opt-sub">Testosterona libre baja y déficit estrogénico</div>
+          </div>
+        </div>
+        <div class="opt-item checkbox" onclick="toggleCheck('bi_sequedad',this)">
+          <span class="opt-marker"></span>
+          <div class="opt-text">
+            <div class="opt-main">Sequedad vaginal</div>
+            <div class="opt-sub">La atrofia genitourinaria es una de las consecuencias más frecuentes del déficit de estrógeno</div>
+          </div>
+        </div>
+        <div class="opt-item checkbox" onclick="toggleCheck('bi_dolor',this)">
+          <span class="opt-marker"></span>
+          <div class="opt-text">
+            <div class="opt-main">Dolor o molestias durante relaciones</div>
+            <div class="opt-sub">Dispareunia por atrofia vaginal tratable con terapia local</div>
+          </div>
+        </div>
+        <div class="opt-item checkbox" onclick="toggleCheck('bi_orgasmo',this)">
+          <span class="opt-marker"></span>
+          <div class="opt-text">
+            <div class="opt-main">Cambios en el orgasmo</div>
+            <div class="opt-sub">Reducción de intensidad o dificultad para alcanzarlo</div>
+          </div>
+        </div>
+        <div class="opt-item checkbox" onclick="toggleCheck('bi_ninguno',this)" id="bi_ninguno_item">
+          <span class="opt-marker"></span>
+          <div class="opt-text"><div class="opt-main">Ninguno de estos síntomas</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="nav-btns">
+    <button class="btn-secondary" onclick="goTo(4)">←</button>
+    <button class="btn-primary" onclick="goTo(6)">Continuar →</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PANTALLA 6: CONTACTO
+══════════════════════════════════════ -->
+<div class="screen" id="s6">
+  <div class="section-wrap">
+    <div class="section-header">
+      <button class="section-back" onclick="goTo(5)">← Anterior</button>
+      <span class="section-eyebrow">Un paso más</span>
+      <div class="section-title">Para ver tus<br><em>resultados</em></div>
+      <p class="section-subtitle">Déjanos tus datos para enviarte tu evaluación personalizada. No hacemos spam.</p>
+    </div>
+
+    <div class="contact-block">
+      <div>
+        <label class="field-label">Nombre completo</label>
+        <input type="text" class="field-input" id="nombre" placeholder="Tu nombre" oninput="checkS6()">
+      </div>
+      <div>
+        <label class="field-label">Correo electrónico</label>
+        <input type="email" class="field-input" id="correo" placeholder="correo@ejemplo.com" oninput="checkS6()">
+      </div>
+      <div>
+        <label class="field-label">Teléfono (WhatsApp)</label>
+        <input type="tel" class="field-input" id="telefono" placeholder="55 1234 5678" oninput="checkS6()">
+      </div>
+    </div>
+    <p style="font-size:11px;color:var(--muted);line-height:1.6;margin-bottom:1.5rem">
+      Al continuar aceptas que la Dra. Mijangos revise tu perfil clínico y te contacte. Tus datos son confidenciales y no se comparten con terceros.
+    </p>
+  </div>
+  <div class="nav-btns">
+    <button class="btn-secondary" onclick="goTo(5)">←</button>
+    <button class="btn-primary" id="btn-s6" disabled onclick="buildResult()">Ver mis resultados →</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PANTALLA 7: RESULTADO
+══════════════════════════════════════ -->
+<div class="screen" id="s7">
+  <div class="result-wrap">
+    <div class="result-hero">
+      <div class="result-badge">✦ Reporte de Evaluación Hormonal</div>
+      <div class="result-name" id="r-name"></div>
+      <div class="result-title" id="r-title"></div>
+      <div class="score-pill"><span class="score-dot"></span><span id="r-score"></span></div>
+    </div>
+
+    <!-- PERFIL DE EJES -->
+    <div class="profile-axes-card" id="profile-axes-card">
+      <span class="pac-tag">Ejes hormonales probables</span>
+      <div class="pac-title" id="pac-title">Cargando <em>perfil...</em></div>
+      <p class="pac-desc" id="pac-desc"></p>
+      <div class="axes-list" id="axes-list"></div>
+    </div>
+
+    <div class="bio-section">
+      <div class="bio-section-title">Perfil Hormonal Estimado</div>
+      <div style="background:var(--warm);border:.5px solid var(--border);border-radius:10px;padding:1rem;margin-bottom:1.25rem">
+        <p style="font-size:12px;color:var(--text);line-height:1.7"><strong style="color:var(--dark)">Nota importante:</strong> Este análisis es una <strong>estimación clínica preliminar</strong> basada en tus síntomas reportados. Para confirmar el estado real de tus hormonas, es necesario realizar <strong>estudios de sangre en laboratorio</strong>.</p>
+      </div>
+      <div id="bio-cards-container"></div>
+    </div>
+
+    <div class="plan-card">
+      <div class="plan-title">Plan de <em>Acción</em></div>
+      <div class="plan-steps">
+        <div class="plan-step">
+          <div class="plan-num">1</div>
+          <div class="plan-step-body">
+            <div class="plan-step-title">Consulta médica presencial</div>
+            <div class="plan-step-desc">Evaluación clínica completa con la Dra. Mijangos · Roma Norte, CDMX</div>
+          </div>
+        </div>
+        <div class="plan-step">
+          <div class="plan-num">2</div>
+          <div class="plan-step-body">
+            <div class="plan-step-title">Panel de laboratorio (100+ biomarcadores)</div>
+            <div class="plan-step-desc">Hormonas, tiroides, metabolismo, inflamación, nutrientes</div>
+          </div>
+        </div>
+        <div class="plan-step">
+          <div class="plan-num">3</div>
+          <div class="plan-step-body">
+            <div class="plan-step-title">Tratamiento personalizado</div>
+            <div class="plan-step-desc">Basado en tus resultados específicos, no protocolos genéricos</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-cta-block">
+      <div class="final-cta-name" id="r-cta-name"></div>
+      <div class="final-cta-title">Tu reporte está<br><em>listo.</em></div>
+      <p class="final-cta-desc">Agenda tu evaluación médica para comenzar tu plan personalizado. La Dra. Mijangos revisa tu perfil y te responde en 48 horas.</p>
+      <a class="btn-whatsapp" id="wa-link" href="#" target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Agendar consulta por WhatsApp
+      </a>
+      <p class="btn-wa-sub">📍 Calle Durango 357, Roma Norte, CDMX</p>
+    </div>
+
+    <p class="disclaimer">Este cuestionario es orientativo y no constituye un diagnóstico médico. Siempre consulta con un profesional de salud antes de tomar decisiones clínicas. © 2025 Koltin X</p>
+  </div>
+</div>
+
+<script>
+// ── STATE ──────────────────────────────
+const state = {
+  edad: null,
+  menstruacion: null,
+  sintomasFisicos: new Set(),
+  peso: null,
+  urinaria: false,
+  intensidades: {},
+  sueno: new Set(),
+  emoIntensidades: {},
+  bienestarIntimo: new Set(),
+  nombre: '',
+  correo: '',
+  telefono: '',
+};
+
+const TOTAL_SCREENS = 7;
+
+// ── NAVIGATION ─────────────────────────
+function goTo(n) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('s'+n).classList.add('active');
+  window.scrollTo(0,0);
+  updateProgress(n);
+}
+
+function updateProgress(n) {
+  const pct = Math.round((n / TOTAL_SCREENS) * 100);
+  document.getElementById('pbar').style.width = pct + '%';
+  const labels = ['Inicio','Datos básicos','Síntomas físicos','Intensidad','Sueño y ánimo','Bienestar íntimo','Tus datos','Tu reporte'];
+  document.getElementById('nav-pill').textContent = labels[n] || 'Evaluación';
+}
+
+// ── RADIO SELECT ───────────────────────
+function selectRadio(group, value, el) {
+  document.querySelectorAll(`#${group}-list .opt-item`).forEach(i => i.classList.remove('selected'));
+  if(!el.closest) { // fallback
+    document.querySelectorAll(`.opt-item[onclick*="${group}"]`).forEach(i=>i.classList.remove('selected'));
+  }
+  el.classList.add('selected');
+  state[group] = value;
+  if(group==='menstruacion') checkS1();
+}
+
+function toggleCheck(key, el) {
+  el.classList.toggle('selected');
+  if(el.classList.contains('selected')) {
+    // Special case: ninguno
+    if(key === 'bi_ninguno') {
+      document.querySelectorAll('#s5 .opt-item.checkbox').forEach(i => {
+        if(i !== el) i.classList.remove('selected');
+      });
+      state.bienestarIntimo.clear();
+    } else {
+      // deselect ninguno if selecting something else
+      const ninguno = document.getElementById('bi_ninguno_item');
+      if(ninguno) ninguno.classList.remove('selected');
+      state.bienestarIntimo.delete('bi_ninguno');
+    }
+    state[key] = true;
+    if(key.startsWith('sf_')) state.sintomasFisicos.add(key);
+    if(key.startsWith('sueño_')) state.sueno.add(key);
+    if(key.startsWith('bi_')) state.bienestarIntimo.add(key);
+  } else {
+    state[key] = false;
+    state.sintomasFisicos.delete(key);
+    state.sueno.delete(key);
+    state.bienestarIntimo.delete(key);
+  }
+}
+
+// ── SCREEN VALIDATIONS ─────────────────
+function checkS1() {
+  const edad = parseInt(document.getElementById('edad').value);
+  state.edad = edad;
+  const ok = edad >= 30 && edad <= 90 && state.menstruacion !== null;
+  document.getElementById('btn-s1').disabled = !ok;
+}
+
+function checkS6() {
+  state.nombre = document.getElementById('nombre').value.trim();
+  state.correo = document.getElementById('correo').value.trim();
+  state.telefono = document.getElementById('telefono').value.trim();
+  const ok = state.nombre.length > 1 && state.correo.includes('@') && state.telefono.length > 7;
+  document.getElementById('btn-s6').disabled = !ok;
+}
+
+// ── INTENSITY BLOCKS ───────────────────
+const intensityItems = [
+  { key: 'bochornos', label: 'Bochornos o calores', tooltip: 'El hipotálamo pierde regulación térmica por déficit de estradiol. Señal directa del eje estrogénico.' },
+  { key: 'sueño', label: 'Problemas para dormir', tooltip: 'Progesterona baja reduce actividad GABAérgica. Cortisol nocturno elevado mantiene el sistema activado.' },
+  { key: 'fatiga', label: 'Fatiga o falta de energía', tooltip: 'Testosterona baja reduce energía mitocondrial. Hipotiroidismo subclínico enlentece metabolismo basal.' },
+  { key: 'dolores', label: 'Dolores corporales', tooltip: 'El estrógeno tiene efecto antiinflamatorio. Al bajar, aumentan marcadores inflamatorios como PCR e IL-6.' },
+];
+
+const emoItems = [
+  { key: 'ansiedad', label: 'Ansiedad o nerviosismo', tooltip: 'La progesterona es un modulador GABAérgico natural. Su déficit genera hiperactivación del sistema nervioso.' },
+  { key: 'irritabilidad', label: 'Irritabilidad o cambios de humor', tooltip: 'El estrógeno regula serotonina y dopamina. Fluctuaciones bruscas generan labilidad emocional.' },
+  { key: 'animo', label: 'Estado de ánimo bajo o tristeza', tooltip: 'La relación estrógeno-serotonina explica la depresión perimenopáusica. Frecuentemente subdiagnosticada.' },
+  { key: 'niebla', label: 'Niebla mental o dificultad para concentrarte', tooltip: 'El cerebro tiene receptores de estrógeno. Su caída afecta memoria de trabajo y velocidad cognitiva.' },
+];
+
+function buildIntensityBlock(item, stateObj) {
+  return `
+    <div class="intensity-block" id="ib_${item.key}">
+      <div class="intensity-header" onclick="toggleInfo('${item.key}')">
+        <span class="intensity-name">${item.label}</span>
+        <span class="intensity-info">Más info</span>
+      </div>
+      <div class="intensity-scale">
+        ${[0,1,2,3,4].map(v=>`<button class="intensity-btn${(stateObj[item.key]||0)===v?' active':''}" onclick="setIntensity('${item.key}',${v},this,event)">${v}</button>`).join('')}
+      </div>
+      <div class="intensity-scale-labels"><span>Nada</span><span>Muy intenso</span></div>
+      <div class="intensity-tooltip">${item.tooltip}</div>
+    </div>`;
+}
+
+document.getElementById('intensity-blocks').innerHTML = intensityItems.map(i => buildIntensityBlock(i, state.intensidades)).join('');
+document.getElementById('emo-intensity-blocks').innerHTML = emoItems.map(i => buildIntensityBlock(i, state.emoIntensidades)).join('');
+
+function setIntensity(key, val, btn, e) {
+  e.stopPropagation();
+  const block = document.getElementById('ib_'+key);
+  block.querySelectorAll('.intensity-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  // Check if it's an emo item
+  if(emoItems.find(i=>i.key===key)) state.emoIntensidades[key] = val;
+  else state.intensidades[key] = val;
+}
+
+function toggleInfo(key) {
+  document.getElementById('ib_'+key).classList.toggle('info-open');
+}
+
+// ── RESULT BUILDER ─────────────────────
+function buildResult() {
+  const nombre = state.nombre.split(' ')[0];
+
+  // Score calculation
+  let score = 0;
+  const sf = state.sintomasFisicos;
+  if(sf.has('sf_bochornos')) score += 3;
+  if(sf.has('sf_sudores')) score += 2;
+  if(sf.has('sf_palpitaciones')) score += 2;
+  if(sf.has('sf_articular')) score += 2;
+  if(sf.has('sf_hinchazón')) score += 2;
+  if(sf.has('sf_piel')) score += 1;
+  if(sf.has('sf_cefalea')) score += 1;
+  if(sf.has('sf_urinaria') || state.urinaria) score += 2;
+  if(state.peso === 'dificil' || state.peso === 'subido') score += 2;
+
+  const suenoScore = state.sueno.size * 2;
+  score += suenoScore;
+
+  let emoScore = 0;
+  Object.values(state.emoIntensidades).forEach(v => { emoScore += v; });
+  score += emoScore;
+
+  Object.values(state.intensidades).forEach(v => { score += v; });
+
+  const biIntimo = state.bienestarIntimo;
+  if(!biIntimo.has('bi_ninguno')) score += biIntimo.size * 2;
+
+  const maxScore = 40;
+  const pctScore = Math.round((score / maxScore) * 28);
+  const nivel = pctScore <= 8 ? 'Leve' : pctScore <= 16 ? 'Moderado' : 'Intenso';
+
+  // Set result header
+  document.getElementById('r-name').textContent = nombre + ' · ' + new Date().toLocaleDateString('es-MX');
+  document.getElementById('r-title').innerHTML = 'Score clínico: <em>' + pctScore + '/28 puntos · ' + nivel + '</em>';
+  document.getElementById('r-score').textContent = 'Score ' + pctScore + '/28 · ' + nivel;
+  document.getElementById('r-cta-name').textContent = nombre + ', tu reporte está listo.';
+
+  // WhatsApp link
+  const msg = encodeURIComponent(`Hola, soy ${state.nombre}. Acabo de completar la evaluación hormonal de Koltin X y me gustaría agendar una consulta con la Dra. Mijangos.`);
+  document.getElementById('wa-link').href = `https://wa.me/521XXXXXXXXXX?text=${msg}`;
+
+  // ── PERFIL DE EJES ──
+  const axes = {
+    estradiol:    0,
+    progesterona: 0,
+    testosterona: 0,
+    tiroides:     0,
+    cortisol:     0,
+    insulina:     0,
+  };
+
+  if(sf.has('sf_bochornos')) axes.estradiol += 3;
+  if(sf.has('sf_sudores'))   axes.estradiol += 2;
+  if(sf.has('sf_articular')) axes.estradiol += 2;
+  if(sf.has('sf_piel'))      axes.estradiol += 1;
+  if(sf.has('sf_palpitaciones')) axes.estradiol += 1;
+  if(biIntimo.has('bi_sequedad') || biIntimo.has('bi_dolor')) axes.estradiol += 2;
+
+  if(state.sueno.has('sueño_conciliar') || state.sueno.has('sueño_despierta')) axes.progesterona += 3;
+  if(state.sueno.has('sueño_cansada')) axes.progesterona += 1;
+  if((state.emoIntensidades.ansiedad||0) >= 2) axes.progesterona += 2;
+  if((state.emoIntensidades.irritabilidad||0) >= 2) axes.progesterona += 1;
+
+  if(biIntimo.has('bi_deseo')) axes.testosterona += 3;
+  if((state.intensidades.fatiga||0) >= 2) axes.testosterona += 2;
+  if((state.emoIntensidades.animo||0) >= 2) axes.testosterona += 1;
+
+  if(sf.has('sf_piel')) axes.tiroides += 2;
+  if((state.intensidades.fatiga||0) >= 2) axes.tiroides += 2;
+  if((state.emoIntensidades.niebla||0) >= 2) axes.tiroides += 2;
+  if(sf.has('sf_cefalea')) axes.tiroides += 1;
+
+  if((state.emoIntensidades.ansiedad||0) >= 1) axes.cortisol += 2;
+  if(state.sueno.has('sueño_despierta')) axes.cortisol += 2;
+  if((state.intensidades.dolores||0) >= 2) axes.cortisol += 1;
+  if(sf.has('sf_palpitaciones')) axes.cortisol += 1;
+
+  if(state.peso === 'dificil' || state.peso === 'subido') axes.insulina += 3;
+  if(sf.has('sf_hinchazón')) axes.insulina += 2;
+  if(state.menstruacion === 'mas5' || state.menstruacion === 'quirurgica') axes.insulina += 1;
+
+  const maxVal = Math.max(...Object.values(axes), 1);
+  const axesPct = {};
+  for(const k in axes) axesPct[k] = Math.min(100, Math.round((axes[k] / maxVal) * 80) + 15);
+  // If 0 score keep it low
+  for(const k in axes) if(axes[k]===0) axesPct[k] = 8;
+
+  const axisLabels = {
+    estradiol:    'Estradiol (E2)',
+    progesterona: 'Progesterona',
+    testosterona: 'Testosterona libre',
+    tiroides:     'Eje tiroideo (TSH/T3)',
+    cortisol:     'Cortisol / Suprarrenal',
+    insulina:     'Insulina / Metabolismo',
+  };
+
+  // Dominant axis → profile name
+  const sorted = Object.entries(axes).sort((a,b)=>b[1]-a[1]);
+  const dominant = sorted[0][0];
+  const profileNames = {
+    estradiol:    { title: 'Déficit de <em>Estradiol</em>', desc: 'Tu patrón apunta al eje estrogénico como principal. Los bochornos, cambios en piel y síntomas urogenitales son señales directas de caída de estradiol.' },
+    progesterona: { title: 'Dominio <em>Estrogénico Relativo</em>', desc: 'La progesterona baja en relación al estrógeno produce insomnio, ansiedad y labilidad emocional. Es el desequilibrio más frecuente en perimenopausia.' },
+    testosterona: { title: 'Déficit de <em>Testosterona</em>', desc: 'Menor libido, fatiga y estado de ánimo bajo apuntan a testosterona libre disminuida. Frecuentemente ignorada en mujeres, tiene impacto directo en energía y bienestar.' },
+    tiroides:     { title: 'Disfunción <em>Tiroidea Subclínica</em>', desc: 'Fatiga, caída de cabello y niebla mental sugieren hipotiroidismo subclínico. Un panel completo (TSH + T3 libre + anticuerpos) puede confirmarlo.' },
+    cortisol:     { title: 'Agotamiento <em>Adrenal</em>', desc: 'Ansiedad, insomnio de madrugada y dolores corporales apuntan al eje HPA bajo estrés crónico. El cortisol mal regulado agota la reserva hormonal.' },
+    insulina:     { title: 'Resistencia <em>Metabólico-Insulínica</em>', desc: 'La dificultad para bajar de peso y la hinchazón abdominal sugieren resistencia a la insulina, amplificada por el déficit estrogénico.' },
+  };
+
+  const prof = profileNames[dominant];
+  document.getElementById('pac-title').innerHTML = prof.title;
+  document.getElementById('pac-desc').textContent = prof.desc;
+
+  const axesList = document.getElementById('axes-list');
+  axesList.innerHTML = sorted.map(([key]) => `
+    <div class="axis-row">
+      <div class="axis-meta">
+        <span class="axis-name">${axisLabels[key]}</span>
+        <span class="axis-pct">${axesPct[key]}%</span>
+      </div>
+      <div class="axis-track">
+        <div class="axis-fill" data-target="${axesPct[key]}%"></div>
+      </div>
+    </div>`).join('');
+
+  // Animate bars after render
+  setTimeout(() => {
+    document.querySelectorAll('.axis-fill').forEach(bar => {
+      bar.style.width = bar.dataset.target;
+    });
+  }, 300);
+
+  // Build biomarcadores
+  const cards = [];
+
+  // Estrógeno
+  if(sf.has('sf_bochornos') || sf.has('sf_sudores') || sf.has('sf_articular') || sf.has('sf_piel')) {
+    const tags = [];
+    if(sf.has('sf_bochornos')||sf.has('sf_sudores')) tags.push('Bochornos o sudoraciones');
+    if(sf.has('sf_articular')) tags.push('Dolor articular');
+    if(sf.has('sf_piel')) tags.push('Cambios en piel o cabello');
+    cards.push({
+      priority: 'PRIORIDAD CLÍNICA',
+      name: 'Estradiol (E2)',
+      state: 'Bajo',
+      tags,
+      nota: 'Deficiencia de estradiol causa inestabilidad vasomotora. El hipotálamo pierde regulación térmica eficiente. Pérdida del efecto antiinflamatorio genera dolor articular crónico.',
+      prev: '~75% de mujeres en transición hormonal',
+    });
+  }
+
+  // PCR / Inflamación
+  if(sf.has('sf_articular') || sf.has('sf_palpitaciones')) {
+    cards.push({
+      priority: 'PRIORIDAD CLÍNICA',
+      name: 'Estradiol / PCR',
+      state: 'Bajo / Elevado',
+      tags: [sf.has('sf_articular')?'Dolor articular':null, sf.has('sf_palpitaciones')?'Palpitaciones':null].filter(Boolean),
+      nota: 'Pérdida del efecto antiinflamatorio del estradiol. Marcadores IL-6 y PCR típicamente elevados.',
+      prev: '~55% de mujeres en transición hormonal',
+    });
+  }
+
+  // Progesterona
+  const suenoBad = state.sueno.has('sueño_conciliar') || state.sueno.has('sueño_despierta') || state.sueno.has('sueño_cansada');
+  if(suenoBad || (state.emoIntensidades.ansiedad||0) >= 2) {
+    const tags = [];
+    if(state.sueno.has('sueño_conciliar')) tags.push('Dificultad para conciliar');
+    if(state.sueno.has('sueño_despierta')) tags.push('Insomnio');
+    if((state.emoIntensidades.ansiedad||0)>=2) tags.push('Ansiedad');
+    cards.push({
+      priority: 'PRIORIDAD CLÍNICA',
+      name: 'Progesterona',
+      state: 'Bajo',
+      tags,
+      nota: 'Déficit de progesterona reduce actividad GABAérgica, afectando arquitectura del sueño. Genera hiperactivación del sistema nervioso.',
+      prev: '~60% de mujeres en transición hormonal',
+    });
+  }
+
+  // Testosterona / TSH
+  const fatiga = (state.intensidades.fatiga || 0);
+  if(fatiga >= 2 || sf.has('sf_piel')) {
+    cards.push({
+      priority: 'REQUIERE MEDICIÓN',
+      name: 'Testosterona / TSH',
+      state: 'Requiere medición',
+      tags: [fatiga>=2 ? 'Fatiga crónica' : null, fatiga>=2 ? 'Baja energía' : null, sf.has('sf_piel')?'Cambios en cabello':null].filter(Boolean),
+      nota: 'Testosterona baja reduce energía mitocondrial. Función tiroidea subóptima enlentece metabolismo basal. Ambas deben medirse en panel.',
+      prev: '~52% de mujeres en transición hormonal',
+    });
+  }
+
+  // Insulina / Cortisol
+  if(state.peso === 'dificil' || state.peso === 'subido' || sf.has('sf_hinchazón')) {
+    cards.push({
+      priority: 'PRIORIDAD CLÍNICA',
+      name: 'Insulina / Estrógeno / Cortisol',
+      state: 'Desbalanceado',
+      tags: ['Dificultad para bajar peso', sf.has('sf_hinchazón')?'Hinchazón abdominal':null].filter(Boolean),
+      nota: 'Resistencia insulínica, estrógeno bajo y cortisol elevado crean un entorno metabólico que dificulta la pérdida de peso. El cuerpo prioriza almacenamiento de grasa visceral.',
+      prev: '~70% de mujeres en transición hormonal',
+    });
+  }
+
+  // Bienestar íntimo
+  if(biIntimo.has('bi_sequedad') || biIntimo.has('bi_dolor') || biIntimo.has('bi_deseo')) {
+    const tags = [];
+    if(biIntimo.has('bi_deseo')) tags.push('Menor deseo sexual');
+    if(biIntimo.has('bi_sequedad')) tags.push('Sequedad vaginal');
+    if(biIntimo.has('bi_dolor')) tags.push('Dispareunia');
+    cards.push({
+      priority: 'ATROFIA UROGENITAL',
+      name: 'Estradiol (E2)',
+      state: 'Bajo local',
+      tags,
+      nota: 'Déficit de estradiol adelgaza el epitelio vaginal y uretral, reduciendo pH vaginal protector y lubricación natural. Tratable con terapia local o sistémica.',
+      prev: '~50% de mujeres en transición hormonal',
+    });
+  }
+
+  // Urinaria
+  if(sf.has('sf_urinaria')) {
+    cards.push({
+      priority: 'ATROFIA UROGENITAL',
+      name: 'Estradiol (E2)',
+      state: 'Bajo',
+      tags: ['Infecciones urinarias recurrentes', 'Irritación'],
+      nota: 'Déficit de estradiol adelgaza el epitelio vaginal y uretral, reduciendo pH vaginal protector y aumentando susceptibilidad a patógenos.',
+      prev: '~50% de mujeres en transición hormonal',
+    });
+  }
+
+  if(cards.length === 0) {
+    cards.push({
+      priority: 'EVALUACIÓN PREVENTIVA',
+      name: 'Panel hormonal completo',
+      state: 'Línea base recomendada',
+      tags: ['Prevención', 'Seguimiento'],
+      nota: 'Aunque tus síntomas sean leves, las mujeres de 40+ se benefician de conocer su línea base hormonal para anticipar cambios y actuar proactivamente.',
+      prev: 'Recomendado para todas las mujeres en esta etapa',
+    });
+  }
+
+  // Render cards
+  const container = document.getElementById('bio-cards-container');
+  container.innerHTML = cards.map(c => `
+    <div class="bio-card">
+      <div class="bio-card-header">
+        <div class="bio-label-col">
+          <span class="bio-priority">${c.priority}</span>
+          <div class="bio-name">${c.name}</div>
+          <div class="bio-state">Estado: ${c.state}</div>
+        </div>
+        <div class="bio-right">
+          <div class="bio-tags">${c.tags.map(t=>`<span class="bio-tag">${t}</span>`).join('')}</div>
+          <span class="bio-nota-label">NOTA CLÍNICA:</span>
+          <p class="bio-nota">${c.nota}</p>
+          <p class="bio-prevalence">Prevalencia: ${c.prev}</p>
+        </div>
+      </div>
+    </div>`).join('');
+
+  goTo(7);
+}
+</script>
+</body>
+</html>
