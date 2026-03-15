@@ -423,12 +423,50 @@ nav{
   font-size:11px;color:#bbb;line-height:1.6;text-align:center;
   padding:1.25rem 0;border-top:.5px solid var(--border);
 }
+
+/* ── INTERACCIONES ── */
+.opt-item:active{transform:scale(.985);transition:transform .08s}
+@keyframes markerPop{0%{transform:scale(.6)}60%{transform:scale(1.2)}100%{transform:scale(1)}}
+.opt-item.selected .opt-marker{animation:markerPop .22s cubic-bezier(.4,0,.2,1)}
+
+/* LOADING OVERLAY */
+#loading-overlay{
+  display:none;position:fixed;inset:0;
+  background:var(--cream);z-index:300;
+  flex-direction:column;align-items:center;justify-content:center;gap:1.75rem;
+}
+.loading-ring{
+  width:48px;height:48px;
+  border:2.5px solid var(--border);
+  border-top-color:var(--teal);
+  border-radius:50%;
+  animation:spin .75s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-title{
+  font-family:'DM Serif Display',serif;
+  font-size:1.75rem;font-weight:400;line-height:1.15;
+  text-align:center;
+}
+.loading-title em{font-style:italic;color:var(--gold)}
+.loading-msg{
+  font-size:12px;color:var(--muted);text-align:center;
+  min-height:1.5em;transition:opacity .3s;letter-spacing:.02em;
+}
+
+/* BIO CARDS STAGGER */
+@keyframes cardIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.bio-card{animation:cardIn .4s ease both}
+
+/* SCORE ANIMATE */
+.score-pill{transition:background .3s}
+a.logo{text-decoration:none;color:inherit}
 </style>
 </head>
 <body>
 
 <nav>
-  <div class="logo">Koltin<span>X</span></div>
+  <a href="/koltin.html" class="logo">Koltin<span>X</span></a>
   <div class="nav-right">
     <div class="nav-step-pill" id="nav-pill">Evaluación gratuita</div>
   </div>
@@ -878,6 +916,13 @@ nav{
 
     <p class="disclaimer">Este cuestionario es orientativo y no constituye un diagnóstico médico. Siempre consulta con un profesional de salud antes de tomar decisiones clínicas. © 2025 Koltin X</p>
   </div>
+</div>
+
+<!-- LOADING OVERLAY -->
+<div id="loading-overlay">
+  <div class="loading-ring"></div>
+  <div class="loading-title">Analizando<br><em>tu perfil</em></div>
+  <div class="loading-msg" id="loading-msg">Cruzando síntomas con ejes hormonales...</div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
@@ -1339,7 +1384,41 @@ function buildResult() {
     if (error) console.error('Error guardando respuesta:', error);
   });
 
-  goTo(7);
+  // ── LOADING + REVEAL ───────────────────
+  const overlay = document.getElementById('loading-overlay');
+  const msgEl   = document.getElementById('loading-msg');
+  overlay.style.display = 'flex';
+
+  const msgs = [
+    'Cruzando síntomas con ejes hormonales...',
+    'Evaluando biomarcadores prioritarios...',
+    'Generando tu perfil clínico...',
+  ];
+  let mi = 0;
+  const msgTimer = setInterval(() => {
+    mi++;
+    if (mi < msgs.length) { msgEl.style.opacity = '0'; setTimeout(() => { msgEl.textContent = msgs[mi]; msgEl.style.opacity = '1'; }, 200); }
+  }, 750);
+
+  setTimeout(() => {
+    clearInterval(msgTimer);
+    overlay.style.display = 'none';
+    goTo(7);
+
+    // Score count-up
+    const scoreEl = document.getElementById('r-score');
+    let cur = 0;
+    const scoreTimer = setInterval(() => {
+      cur = Math.min(cur + 1, pctScore);
+      scoreEl.textContent = `Score ${cur}/28 · ${nivel}`;
+      if (cur >= pctScore) clearInterval(scoreTimer);
+    }, 55);
+
+    // Bio cards stagger
+    document.querySelectorAll('.bio-card').forEach((card, i) => {
+      card.style.animationDelay = `${i * 0.12}s`;
+    });
+  }, 2200);
 }
 </script>
 </body>
