@@ -1286,7 +1286,29 @@ function buildResult() {
       </div>
     </div>`).join('');
 
-  // ── GUARDAR EN SUPABASE ─────────────────
+  // ── GUARDAR EN SUPABASE + GOOGLE SHEETS ─
+  const payload = {
+    nombre: state.nombre,
+    correo: state.correo,
+    telefono: state.telefono,
+    edad: state.edad,
+    menstruacion: state.menstruacion,
+    peso: state.peso,
+    score: pctScore,
+    nivel: nivel,
+    perfil_dominante: dominant,
+    sintomas_fisicos: [...state.sintomasFisicos],
+    sueno: [...state.sueno],
+    bienestar_intimo: [...state.bienestarIntimo],
+  };
+
+  // Google Sheets
+  fetch('https://script.google.com/a/macros/koltin.mx/s/AKfycbxxv7k7HuKA3ZhwUi3HkZPRtWouiS0qckwjLSjuSvwU0WO__Wf45OuwkObLGfjufdDtKA/exec', {
+    method: 'POST',
+    body: JSON.stringify(payload),
+  }).catch(err => console.error('Error Google Sheets:', err));
+
+  // Supabase
   _sb.from('respuestas').insert({
     nombre: state.nombre,
     correo: state.correo,
