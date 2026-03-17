@@ -461,6 +461,42 @@ nav{
 /* SCORE ANIMATE */
 .score-pill{transition:background .3s}
 a.logo{text-decoration:none;color:inherit}
+
+/* ── PISTAS PROGRESIVAS ── */
+.insight-banner{
+  display:flex;align-items:flex-start;gap:.75rem;
+  padding:.85rem 1rem;
+  background:#fff8f0;border:.5px solid var(--gold-light);
+  border-radius:10px;margin-top:1rem;
+  animation:fadeUp .35s ease both;
+}
+.insight-banner .ib-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+.insight-banner p{font-size:12px;color:var(--gold);line-height:1.7;font-style:italic}
+.insight-banner strong{font-style:normal;color:#7a5c3e}
+
+/* MRS DOMAIN SCORES */
+.mrs-domains{display:flex;gap:.5rem;justify-content:center;margin-top:.85rem;flex-wrap:wrap}
+.mrs-domain{
+  background:var(--warm);border:.5px solid var(--border);
+  border-radius:8px;padding:.5rem .85rem;text-align:center;min-width:80px;
+}
+.mrs-d-label{font-size:9px;color:var(--muted);display:block;letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px}
+.mrs-d-score{font-size:1.1rem;font-family:'DM Serif Display',serif;color:var(--dark)}
+
+/* DISCLAIMER CLÍNICO PROMINENTE */
+.disclaimer-clinical{
+  display:flex;align-items:flex-start;gap:.75rem;
+  background:var(--warm);
+  border:.5px solid var(--border);
+  border-left:3px solid var(--gold);
+  border-radius:10px;padding:1rem;margin-bottom:1.5rem;
+}
+.disclaimer-clinical-icon{font-size:16px;flex-shrink:0;margin-top:2px}
+.disclaimer-clinical p{font-size:12px;color:var(--text);line-height:1.75}
+
+/* TOP PRIORITY BIO CARD */
+.bio-card-top{border-color:var(--teal);box-shadow:0 0 0 .5px var(--teal)}
+.bio-card-top .bio-priority{background:var(--teal);color:#fff;border-color:var(--teal)}
 </style>
 </head>
 <body>
@@ -584,6 +620,7 @@ a.logo{text-decoration:none;color:inherit}
           <div class="opt-text">
             <div class="opt-main">Bochornos o calores súbitos</div>
             <div class="opt-sub">La caída de estrógeno desregula el termostato del hipotálamo</div>
+            <div class="opt-reveal">🔬 <strong>Hormona asociada: Estradiol (E2).</strong> Este síntoma está asociado a la caída del estrógeno. Un análisis de sangre puede confirmar tu nivel.</div>
           </div>
         </div>
         <div class="opt-item checkbox" onclick="toggleCheck('sf_sudores',this)">
@@ -591,6 +628,7 @@ a.logo{text-decoration:none;color:inherit}
           <div class="opt-text">
             <div class="opt-main">Sudores nocturnos</div>
             <div class="opt-sub">Bochornos durante el sueño por fluctuaciones hormonales nocturnas</div>
+            <div class="opt-reveal">🔬 <strong>Hormona asociada: Estradiol (E2).</strong> Los sudores nocturnos son señal directa del eje estrogénico. Un análisis de laboratorio puede confirmar tu nivel.</div>
           </div>
         </div>
         <div class="opt-item checkbox" onclick="toggleCheck('sf_palpitaciones',this)">
@@ -598,6 +636,7 @@ a.logo{text-decoration:none;color:inherit}
           <div class="opt-text">
             <div class="opt-main">Palpitaciones o taquicardia</div>
             <div class="opt-sub">El estrógeno afecta el sistema cardiovascular y nervioso autónomo</div>
+            <div class="opt-reveal">🔬 <strong>Hormona asociada: Estrógeno / Cortisol.</strong> Este síntoma está asociado a fluctuaciones del eje estrogénico y adrenal. Un análisis de laboratorio puede confirmar tus niveles.</div>
           </div>
         </div>
         <div class="opt-item checkbox" onclick="toggleCheck('sf_articular',this)">
@@ -605,6 +644,7 @@ a.logo{text-decoration:none;color:inherit}
           <div class="opt-text">
             <div class="opt-main">Dolor articular o rigidez</div>
             <div class="opt-sub">El estrógeno tiene efecto antiinflamatorio; al bajar, aumenta la inflamación</div>
+            <div class="opt-reveal">🔬 <strong>Hormona asociada: Estradiol (E2).</strong> El estrógeno es antiinflamatorio natural. Al disminuir, articulaciones y tejidos se inflaman. Un análisis puede confirmar tu nivel.</div>
           </div>
         </div>
         <div class="opt-item checkbox" onclick="toggleCheck('sf_hinchazón',this)">
@@ -612,6 +652,7 @@ a.logo{text-decoration:none;color:inherit}
           <div class="opt-text">
             <div class="opt-main">Hinchazón o aumento de peso abdominal</div>
             <div class="opt-sub">Cambios en metabolismo y redistribución de grasa por menor estrógeno y progesterona</div>
+            <div class="opt-reveal">🔬 <strong>Hormonas asociadas: Insulina y Estrógeno.</strong> La grasa abdominal refleja resistencia a la insulina amplificada por el déficit de estrógeno. Un análisis metabólico puede confirmarlo.</div>
           </div>
         </div>
         <div class="opt-item checkbox" onclick="toggleCheck('sf_senos',this)">
@@ -619,6 +660,7 @@ a.logo{text-decoration:none;color:inherit}
           <div class="opt-text">
             <div class="opt-main">Sensibilidad en los senos</div>
             <div class="opt-sub">Fluctuaciones hormonales irregulares durante la perimenopausia</div>
+            <div class="opt-reveal">🔬 <strong>Hormonas asociadas: Estrógeno y Progesterona.</strong> Las fluctuaciones irregulares de ambas hormonas causan este síntoma. Un análisis de laboratorio puede confirmar tus niveles.</div>
           </div>
         </div>
         <div class="opt-item checkbox" onclick="toggleCheck('sf_piel',this)">
@@ -626,6 +668,7 @@ a.logo{text-decoration:none;color:inherit}
           <div class="opt-text">
             <div class="opt-main">Cambios en piel o cabello</div>
             <div class="opt-sub">El estrógeno mantiene colágeno y grosor del cabello; al bajar, la piel se adelgaza</div>
+            <div class="opt-reveal">🔬 <strong>Hormonas asociadas: Estrógeno y Tiroides (TSH).</strong> Tanto el estrógeno como la función tiroidea impactan directamente piel y cabello. Un análisis de laboratorio puede confirmar tus niveles.</div>
           </div>
         </div>
         <div class="opt-item checkbox" onclick="toggleCheck('sf_cefalea',this)">
@@ -633,6 +676,7 @@ a.logo{text-decoration:none;color:inherit}
           <div class="opt-text">
             <div class="opt-main">Dolores de cabeza frecuentes</div>
             <div class="opt-sub">Fluctuaciones de estrógeno afectan neurotransmisores y vasos sanguíneos</div>
+            <div class="opt-reveal">🔬 <strong>Hormona asociada: Estrógeno.</strong> Las cefaleas hormonales son uno de los síntomas más subestimados de la transición. Un análisis puede confirmar el patrón de fluctuación.</div>
           </div>
         </div>
       </div>
@@ -734,6 +778,7 @@ a.logo{text-decoration:none;color:inherit}
           <div class="opt-text">
             <div class="opt-main">Me despierto varias veces en la noche</div>
             <div class="opt-sub">Especialmente entre 2-4 AM</div>
+            <div class="opt-reveal">🌙 <strong>Hormona asociada: Progesterona.</strong> La progesterona facilita el sueño profundo. Cuando baja, los despertares nocturnos son muy comunes y tienen solución hormonal.</div>
           </div>
         </div>
         <div class="opt-item checkbox" onclick="toggleCheck('sueño_cansada',this)">
@@ -749,6 +794,10 @@ a.logo{text-decoration:none;color:inherit}
     <div class="q-block">
       <label class="q-label">Tu estado emocional <span class="q-hint">Los cambios hormonales afectan tu ánimo</span></label>
       <div id="emo-intensity-blocks"></div>
+      <div id="emo-hint" class="insight-banner" style="display:none">
+        <span class="ib-icon">💛</span>
+        <p><strong>Nota clínica:</strong> Los cambios emocionales durante esta etapa tienen una base hormonal real. La progesterona y el estrógeno regulan serotonina y GABA. No estás imaginando las cosas.</p>
+      </div>
     </div>
   </div>
   <div class="nav-btns">
@@ -858,6 +907,20 @@ a.logo{text-decoration:none;color:inherit}
       <div class="result-name" id="r-name"></div>
       <div class="result-title" id="r-title"></div>
       <div class="score-pill"><span class="score-dot"></span><span id="r-score"></span></div>
+      <div class="mrs-domains" id="mrs-domains">
+        <div class="mrs-domain">
+          <span class="mrs-d-label">Corporal</span>
+          <span class="mrs-d-score" id="mrs-corp">—</span>
+        </div>
+        <div class="mrs-domain">
+          <span class="mrs-d-label">Psicológico</span>
+          <span class="mrs-d-score" id="mrs-psi">—</span>
+        </div>
+        <div class="mrs-domain">
+          <span class="mrs-d-label">Urogenital</span>
+          <span class="mrs-d-score" id="mrs-uro">—</span>
+        </div>
+      </div>
     </div>
 
     <!-- PERFIL DE EJES -->
@@ -870,8 +933,9 @@ a.logo{text-decoration:none;color:inherit}
 
     <div class="bio-section">
       <div class="bio-section-title">Perfil Hormonal Estimado</div>
-      <div style="background:var(--warm);border:.5px solid var(--border);border-radius:10px;padding:1rem;margin-bottom:1.25rem">
-        <p style="font-size:12px;color:var(--text);line-height:1.7"><strong style="color:var(--dark)">Nota importante:</strong> Este análisis es una <strong>estimación clínica preliminar</strong> basada en tus síntomas reportados. Para confirmar el estado real de tus hormonas, es necesario realizar <strong>estudios de sangre en laboratorio</strong>.</p>
+      <div class="disclaimer-clinical">
+        <span class="disclaimer-clinical-icon">⚕️</span>
+        <p><strong>Estimación clínica preliminar.</strong> Este análisis se basa en tus síntomas reportados. Para confirmar el estado real de tus hormonas, es necesario realizar <strong>estudios de sangre en laboratorio</strong>. Este reporte no sustituye la consulta médica.</p>
       </div>
       <div id="bio-cards-container"></div>
     </div>
@@ -1059,52 +1123,71 @@ function setIntensity(key, val, btn, e) {
   block.querySelectorAll('.intensity-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   // Check if it's an emo item
-  if(emoItems.find(i=>i.key===key)) state.emoIntensidades[key] = val;
-  else state.intensidades[key] = val;
+  if(emoItems.find(i=>i.key===key)) {
+    state.emoIntensidades[key] = val;
+    checkEmoHint();
+  } else {
+    state.intensidades[key] = val;
+  }
 }
 
 function toggleInfo(key) {
   document.getElementById('ib_'+key).classList.toggle('info-open');
 }
 
+// ── EMO HINT ──────────────────────────────────────────────
+function checkEmoHint() {
+  const total = Object.values(state.emoIntensidades).reduce((a,b)=>a+b, 0);
+  const hint = document.getElementById('emo-hint');
+  if(hint) hint.style.display = total >= 3 ? 'flex' : 'none';
+}
+
 // ── RESULT BUILDER ─────────────────────
 function buildResult() {
   const nombre = state.nombre.split(' ')[0];
-
-  // Score calculation
-  let score = 0;
   const sf = state.sintomasFisicos;
-  if(sf.has('sf_bochornos')) score += 3;
-  if(sf.has('sf_sudores')) score += 2;
-  if(sf.has('sf_palpitaciones')) score += 2;
-  if(sf.has('sf_articular')) score += 2;
-  if(sf.has('sf_hinchazón')) score += 2;
-  if(sf.has('sf_piel')) score += 1;
-  if(sf.has('sf_cefalea')) score += 1;
-  if(sf.has('sf_urinaria') || state.urinaria) score += 2;
-  if(state.peso === 'dificil' || state.peso === 'subido') score += 2;
-
-  const suenoScore = state.sueno.size * 2;
-  score += suenoScore;
-
-  let emoScore = 0;
-  Object.values(state.emoIntensidades).forEach(v => { emoScore += v; });
-  score += emoScore;
-
-  Object.values(state.intensidades).forEach(v => { score += v; });
-
   const biIntimo = state.bienestarIntimo;
-  if(!biIntimo.has('bi_ninguno')) score += biIntimo.size * 2;
 
-  const maxScore = 40;
-  const pctScore = Math.round((score / maxScore) * 28);
-  const nivel = pctScore <= 8 ? 'Leve' : pctScore <= 16 ? 'Moderado' : 'Intenso';
+  // ── MRS SCORE (Menopause Rating Scale, adaptado) ──────────────────
+  // Dominio Corporal (0-12): bochornos + palpitaciones + sueño
+  const mrs_bochornos   = state.intensidades.bochornos || 0;          // 0-4
+  const mrs_palpitaciones = sf.has('sf_palpitaciones') ? 2 : 0;       // 0 or 2
+  const mrs_sueno_corp  = state.intensidades.sueño || 0;              // 0-4
+  const scoreCorporal   = mrs_bochornos + mrs_palpitaciones + mrs_sueno_corp; // 0-10
+
+  // Dominio Psicológico (0-16): ánimo + ansiedad + agotamiento + niebla
+  const mrs_animo       = state.emoIntensidades.animo || 0;           // 0-4
+  const mrs_ansiedad    = state.emoIntensidades.ansiedad || 0;        // 0-4
+  const mrs_agotamiento = state.intensidades.fatiga || 0;             // 0-4
+  const mrs_niebla      = state.emoIntensidades.niebla || 0;          // 0-4
+  const scorePsicologico = mrs_animo + mrs_ansiedad + mrs_agotamiento + mrs_niebla; // 0-16
+
+  // Dominio Urogenital (0-12): sequedad + urinaria + sexual
+  const mrs_sequedad = biIntimo.has('bi_sequedad') ? 4 : 0;           // 0 or 4
+  const mrs_urinaria = sf.has('sf_urinaria') ? 4 : 0;                 // 0 or 4
+  const mrs_sexual   = (biIntimo.has('bi_deseo') || biIntimo.has('bi_dolor') || biIntimo.has('bi_orgasmo')) ? 4 : 0;
+  const scoreUrogenital = mrs_sequedad + mrs_urinaria + mrs_sexual;    // 0-12
+
+  // Total MRS normalizado a 0-44
+  const rawMRS   = scoreCorporal + scorePsicologico + scoreUrogenital; // 0-38 max
+  const scoreMRS = Math.round(rawMRS * 44 / 38);                       // 0-44
+  // Severidad por percentil (P25≈11, P75≈32)
+  const nivel = scoreMRS <= 11 ? 'Leve' : scoreMRS <= 32 ? 'Moderado' : 'Severo';
+
+  // Compat alias para código existente de axes/biomarcadores
+  const pctScore = scoreMRS;
+  const score    = rawMRS;
 
   // Set result header
   document.getElementById('r-name').textContent = nombre + ' · ' + new Date().toLocaleDateString('es-MX');
-  document.getElementById('r-title').innerHTML = 'Score clínico: <em>' + pctScore + '/28 puntos · ' + nivel + '</em>';
-  document.getElementById('r-score').textContent = 'Score ' + pctScore + '/28 · ' + nivel;
+  document.getElementById('r-title').innerHTML = 'MRS <em>' + scoreMRS + '/44 · ' + nivel + '</em>';
+  document.getElementById('r-score').textContent = 'MRS ' + scoreMRS + '/44 · ' + nivel;
   document.getElementById('r-cta-name').textContent = nombre + ', tu reporte está listo.';
+
+  // Fill MRS domain scores
+  document.getElementById('mrs-corp').textContent = scoreCorporal + '/10';
+  document.getElementById('mrs-psi').textContent  = scorePsicologico + '/16';
+  document.getElementById('mrs-uro').textContent  = scoreUrogenital + '/12';
 
   // WhatsApp link
   const msg = encodeURIComponent(`Hola, soy ${state.nombre}. Acabo de completar la evaluación hormonal de Koltin X y me gustaría agendar una consulta con la Dra. Mijangos.`);
@@ -1312,15 +1395,31 @@ function buildResult() {
     });
   }
 
+  // Mark top priority card (card whose name matches the dominant axis)
+  const dominantToCardName = {
+    estradiol:    'Estradiol (E2)',
+    progesterona: 'Progesterona',
+    testosterona: 'Testosterona / TSH',
+    tiroides:     'Testosterona / TSH',
+    cortisol:     'Progesterona',
+    insulina:     'Insulina / Estrógeno / Cortisol',
+  };
+  const topCardName = dominantToCardName[dominant];
+  let topMarked = false;
+  cards.forEach(c => {
+    if(!topMarked && c.name === topCardName) { c.topPriority = true; topMarked = true; }
+  });
+  if(!topMarked && cards.length > 0) cards[0].topPriority = true;
+
   // Render cards
   const container = document.getElementById('bio-cards-container');
   container.innerHTML = cards.map(c => `
-    <div class="bio-card">
+    <div class="bio-card${c.topPriority ? ' bio-card-top' : ''}">
       <div class="bio-card-header">
         <div class="bio-label-col">
-          <span class="bio-priority">${c.priority}</span>
+          <span class="bio-priority">${c.topPriority ? '★ ' : ''}${c.priority}</span>
           <div class="bio-name">${c.name}</div>
-          <div class="bio-state">Estado: ${c.state}</div>
+          <div class="bio-state">Estado estimado: ${c.state}</div>
         </div>
         <div class="bio-right">
           <div class="bio-tags">${c.tags.map(t=>`<span class="bio-tag">${t}</span>`).join('')}</div>
@@ -1339,7 +1438,10 @@ function buildResult() {
     edad: state.edad,
     menstruacion: state.menstruacion,
     peso: state.peso,
-    score: pctScore,
+    score: scoreMRS,
+    score_corporal: scoreCorporal,
+    score_psicologico: scorePsicologico,
+    score_urogenital: scoreUrogenital,
     nivel: nivel,
     perfil_dominante: dominant,
     sintomas_fisicos: [...state.sintomasFisicos],
@@ -1359,7 +1461,7 @@ function buildResult() {
     method: 'POST',
     mode: 'no-cors',
     body: JSON.stringify({
-      text: `*Nueva respuesta — Koltin TRH*\n*Nombre:* ${payload.nombre}\n*Correo:* ${payload.correo}\n*Teléfono:* ${payload.telefono}\n*Edad:* ${payload.edad}\n*Score:* ${payload.score}/28 · ${payload.nivel}\n*Perfil dominante:* ${payload.perfil_dominante}\n*Síntomas:* ${payload.sintomas_fisicos.join(', ') || '—'}`,
+      text: `*Nueva respuesta — Koltin TRH*\n*Nombre:* ${payload.nombre}\n*Correo:* ${payload.correo}\n*Teléfono:* ${payload.telefono}\n*Edad:* ${payload.edad}\n*MRS:* ${payload.score}/44 · ${payload.nivel} (Corporal ${payload.score_corporal}/10 · Psicológico ${payload.score_psicologico}/16 · Urogenital ${payload.score_urogenital}/12)\n*Perfil dominante:* ${payload.perfil_dominante}\n*Síntomas:* ${payload.sintomas_fisicos.join(', ') || '—'}`,
     }),
   }).catch(err => console.error('Error Slack:', err));
 
@@ -1409,9 +1511,9 @@ function buildResult() {
     const scoreEl = document.getElementById('r-score');
     let cur = 0;
     const scoreTimer = setInterval(() => {
-      cur = Math.min(cur + 1, pctScore);
-      scoreEl.textContent = `Score ${cur}/28 · ${nivel}`;
-      if (cur >= pctScore) clearInterval(scoreTimer);
+      cur = Math.min(cur + 1, scoreMRS);
+      scoreEl.textContent = `MRS ${cur}/44 · ${nivel}`;
+      if (cur >= scoreMRS) clearInterval(scoreTimer);
     }, 55);
 
     // Bio cards stagger
