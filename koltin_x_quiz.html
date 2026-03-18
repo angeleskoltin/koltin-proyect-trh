@@ -497,6 +497,19 @@ a.logo{text-decoration:none;color:inherit}
 /* TOP PRIORITY BIO CARD */
 .bio-card-top{border-color:var(--teal);box-shadow:0 0 0 .5px var(--teal)}
 .bio-card-top .bio-priority{background:var(--teal);color:#fff;border-color:var(--teal)}
+
+/* RESULTADO — CONTEXTO EMOCIONAL */
+.result-emotional{font-size:16px;color:var(--dark);font-weight:500;margin-top:1.1rem;letter-spacing:-.01em}
+.result-urgency{font-size:13px;color:#c0392b;margin-top:.4rem;background:#fff5f5;border:.5px solid #f5c6c6;border-radius:8px;padding:.5rem .85rem;display:inline-block}
+
+/* CTA INMEDIATO */
+.cta-inmediato{display:flex;flex-direction:column;gap:.75rem;margin:0 0 2rem}
+.btn-cta-call{width:100%;padding:18px 24px;background:var(--dark);color:#fff;border:none;border-radius:10px;font-size:17px;font-weight:500;font-family:inherit;cursor:pointer;letter-spacing:.01em;transition:background .15s}
+.btn-cta-call:hover{background:#333}
+.btn-cta-call:disabled{background:#999;cursor:default}
+.btn-cta-info{width:100%;padding:16px 24px;background:transparent;color:var(--dark);border:.5px solid var(--dark);border-radius:10px;font-size:16px;font-weight:400;font-family:inherit;cursor:pointer;transition:background .15s}
+.btn-cta-info:hover{background:var(--warm)}
+.btn-cta-info:disabled{color:#999;border-color:#ccc;cursor:default}
 </style>
 </head>
 <body>
@@ -921,6 +934,14 @@ a.logo{text-decoration:none;color:inherit}
           <span class="mrs-d-score" id="mrs-uro">—</span>
         </div>
       </div>
+      <p class="result-emotional">Esto explica por qué te sientes así.</p>
+      <p class="result-urgency">⚠ Estos niveles tienden a empeorar sin intervención.</p>
+    </div>
+
+    <!-- CTA INMEDIATO -->
+    <div class="cta-inmediato">
+      <button class="btn-cta-call" id="btn-agendar" onclick="agendarLlamada()">Quiero que me llamen →</button>
+      <button class="btn-cta-info" id="btn-info" onclick="marcarMasInfo()">Necesito más información</button>
     </div>
 
     <!-- PERFIL DE EJES -->
@@ -1173,6 +1194,7 @@ function buildResult() {
   const scoreMRS = Math.round(rawMRS * 44 / 38);                       // 0-44
   // Severidad por percentil (P25≈11, P75≈32)
   const nivel = scoreMRS <= 11 ? 'Leve' : scoreMRS <= 32 ? 'Moderado' : 'Severo';
+  state.score = scoreMRS;
 
   // Compat alias para código existente de axes/biomarcadores
   const pctScore = scoreMRS;
@@ -1269,7 +1291,6 @@ function buildResult() {
     <div class="axis-row">
       <div class="axis-meta">
         <span class="axis-name">${axisLabels[key]}</span>
-        <span class="axis-pct">${axesPct[key]}%</span>
       </div>
       <div class="axis-track">
         <div class="axis-fill" data-target="${axesPct[key]}%"></div>
@@ -1425,7 +1446,6 @@ function buildResult() {
           <div class="bio-tags">${c.tags.map(t=>`<span class="bio-tag">${t}</span>`).join('')}</div>
           <span class="bio-nota-label">NOTA CLÍNICA:</span>
           <p class="bio-nota">${c.nota}</p>
-          <p class="bio-prevalence">Prevalencia: ${c.prev}</p>
         </div>
       </div>
     </div>`).join('');
@@ -1521,6 +1541,37 @@ function buildResult() {
       card.style.animationDelay = `${i * 0.12}s`;
     });
   }, 2200);
+}
+
+// ── MARCAR INTERÉS EN BD ─────────────────
+function _marcarInteres(tipo) {
+  const slackUrl = atob('aHR0cHM6Ly9ob29rcy5zbGFjay5jb20vc2VydmljZXMvVDAxUVBDN0NERDUvQjBBTFVDSDhBQ1UvRHVWTEJRRU1XRzZseE16N2dpMTVvMTdP');
+  const emoji = tipo === 'llamada' ? '📞' : 'ℹ️';
+  const accion = tipo === 'llamada' ? 'quiere que la llamen' : 'solicita más información';
+  fetch(slackUrl, {
+    method: 'POST', mode: 'no-cors',
+    body: JSON.stringify({
+      text: `${emoji} *${state.nombre}* ${accion}\n*Tel:* ${state.telefono} · *Correo:* ${state.correo} · *Score MRS:* ${state.score || '—'}/44`,
+    }),
+  }).catch(() => {});
+  _sb.from('respuestas')
+    .update({ [tipo === 'llamada' ? 'solicita_llamada' : 'solicita_info']: true })
+    .eq('correo', state.correo)
+    .then(({ error }) => { if (error) console.error('Error marcando interés:', error); });
+}
+
+function agendarLlamada() {
+  _marcarInteres('llamada');
+  document.getElementById('btn-agendar').textContent = '✓ Te contactamos pronto';
+  document.getElementById('btn-agendar').disabled = true;
+  document.getElementById('btn-info').disabled = true;
+}
+
+function marcarMasInfo() {
+  _marcarInteres('info');
+  document.getElementById('btn-info').textContent = '✓ Anotado, te enviamos info';
+  document.getElementById('btn-info').disabled = true;
+  document.getElementById('btn-agendar').disabled = true;
 }
 </script>
 </body>
